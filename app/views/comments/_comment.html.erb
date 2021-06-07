@@ -1,15 +1,18 @@
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
-
-<p>
-  <%= link_to 'Destroy Comment', [comment.article, comment],
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
-</p>
+<div class="commented-section mt-2">
+  <div class="d-flex flex-row align-items-center commented-user">
+    <h5 class="me-2"><%= comment.commenter %></h5><span class="dot mb-1"></span><span class="mb-1 ms-2">4 hours ago</span>
+    <%= link_to [comment.article, comment],
+                method: :delete,
+                data: { confirm: "Are you sure?" },
+                class: 'btn btn-danger btn-sm ms-auto' do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
+  </div>
+  <div class="comment-text-sm"><span><%= comment.body %></span></div>
+  <div class="reply-section">
+    <div class="d-flex flex-row align-items-center voting-icons"><i class="fas fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ms-2">10</span><span class="dot ms-2"></span>
+      <h6 class="ms-2 mt-1">Reply</h6>
+    </div>
+  </div>
+</div>
+<%# <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div> %>

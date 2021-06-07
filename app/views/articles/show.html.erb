@@ -1,17 +1,34 @@
-<h1><%= @article.title %></h1>
-<p><%= @article.body %><p>
+<div class="container mt-5 pt-3">
+  <h1><%= @article.title %></h1>
+  <p><%= @article.body %></p>
 
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li>
-    <%= link_to "Destroy",article_path(@article),
+  <div class="mb-3">
+    <%= link_to new_article_path, class: 'btn btn-primary btn-sm' do %>
+      <i class="fas fa-plus"></i>
+      New Article
+    <% end %>
+    <%= link_to edit_article_path(@article), class: 'btn btn-success btn-sm' do %>
+      <i class="fas fa-edit"></i>
+      Edit
+    <% end %>
+    <%= link_to article_path(@article),
                 method: :delete,
-                data: { confirm: "Are you sure?" } %>
-  </li>
-</ul>
+                data: { confirm: "Are you sure?" },
+                class: 'btn btn-danger btn-sm' do %>
+      <i class="far fa-trash-alt"></i>
+      Delete
+    <% end %>
+  </div>
 
-<h2>Comments</h2>
-<%= render @article.comments %>
+  <%= render 'comments/form' %>
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+  <h2><%= pluralize(@article.comments.count, "comment") %></h2>
+  <div class="d-flex row mb-3">
+    <div class="d-flex flex-column col-md-8">
+      <div class="comment-bottom bg-white p-2 px-4">
+        <%= render @article.comments %>
+      </div>
+    </div>
+  </div>
+  <%# <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div> %>
+</div>
