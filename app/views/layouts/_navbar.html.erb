@@ -31,17 +31,16 @@
               <li>
                 <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </li>
-              <%# <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li> %>
             </ul>
           </li>
         <% end %>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
+      <% if current_page?(articles_path) %>
+        <%= form_tag(articles_path, method: :get, class: 'd-flex') do %>
+          <%= search_field_tag :search, params[:search], class: 'form-control me-2', placeholder: 'Search', aria: {label: 'Search'} %>
+          <%= button_tag 'Search', class: 'btn btn-outline-light', name: nil %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </nav>
