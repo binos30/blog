@@ -1,12 +1,14 @@
-<div class="container mt-5 pt-3">
-  <h1><%= @article.title %></h1>
-  <p><%= @article.body %></p>
+<h2><%= @article.title %></h2>
+<p><%= @article.body %></p>
 
-  <div class="mb-3">
+<div class="mb-3">
+  <% if user_signed_in? %>
     <%= link_to new_article_path, class: 'btn btn-primary btn-sm' do %>
       <i class="fas fa-plus"></i>
       New Article
     <% end %>
+  <% end %>
+  <% if article_author? %>
     <%= link_to edit_article_path(@article), class: 'btn btn-success btn-sm' do %>
       <i class="fas fa-edit"></i>
       Edit
@@ -18,11 +20,11 @@
       <i class="far fa-trash-alt"></i>
       Delete
     <% end %>
-  </div>
+  <% end %>
+</div>
 
-  <%= render 'comments/form' %>
-
-  <h2><%= pluralize(@article.comments.count, "comment") %></h2>
+<h2><%= pluralize(@article.comments.count, "comment") %></h2>
+<% if @article.comments.count > 0 %>
   <div class="d-flex row mb-3">
     <div class="d-flex flex-column col-md-8">
       <div class="comment-bottom bg-white p-2 px-4">
@@ -30,5 +32,9 @@
       </div>
     </div>
   </div>
-  <%# <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div> %>
-</div>
+<% end %>
+<%# <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div> %>
+
+<%= render 'comments/form' %>
+
+<%= javascript_pack_tag 'custom' %>

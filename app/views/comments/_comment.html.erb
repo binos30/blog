@@ -1,6 +1,6 @@
 <div class="commented-section mt-2">
   <div class="d-flex flex-row align-items-center commented-user">
-    <h5 class="me-2"><%= comment.commenter %></h5><span class="dot mb-1"></span><span class="mb-1 ms-2">4 hours ago</span>
+    <h5 class="me-2"><%= comment.user.full_name %></h5><span class="dot mb-1"></span><span class="mb-1 ms-2">4 hours ago</span>
     <%= link_to [comment.article, comment],
                 method: :delete,
                 data: { confirm: "Are you sure?" },

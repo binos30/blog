@@ -20,7 +20,7 @@
   <div class="row mb-3">
     <div class="col-md-3">
       <%= form.label :status, class: 'form-label' %>
-      <%= form.select :status, ['public', 'private', 'archived'], {}, selected: @article.status || 'public', class: 'form-select' %>
+      <%= form.select :status, ['public', 'private', 'archived'], {}, class: 'form-select' %>
     </div>
   </div>
   <%= form.submit class: 'btn btn-primary btn-sm' %>
