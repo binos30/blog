@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
@@ -12,10 +14,10 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
 
-    unless @comment.user.id == current_user.id
-      flash[:warning] = "Not Authorized"
-    else
+    if @comment.user.id == current_user.id
       @comment.destroy
+    else
+      flash[:warning] = "Not Authorized"
     end
 
     redirect_to article_path(@article)

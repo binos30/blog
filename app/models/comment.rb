@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Comment < ApplicationRecord
   include Visible
 
@@ -7,9 +9,9 @@ class Comment < ApplicationRecord
   validates :body, presence: true
 
   after_initialize do
-    if self.new_record?
+    if new_record?
       # values will be available for new record forms.
-      self.status = 'public'
+      self.status = "public"
     end
   end
 end

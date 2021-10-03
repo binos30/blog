@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
@@ -9,8 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   # GET /articles/1
-  def show
-  end
+  def show; end
 
   # GET /articles/new
   def new
@@ -30,8 +31,7 @@ class ArticlesController < ApplicationController
   end
 
   # GET /articles/1/edit
-  def edit
-  end
+  def edit; end
 
   # PATCH/PUT /articles/1
   def update
@@ -51,10 +51,10 @@ class ArticlesController < ApplicationController
 
   def correct_user
     @article = current_user.articles.find_by(id: params[:id])
-    if @article.nil?
-      redirect_to articles_path
-      flash[:warning] = "Not Authorized"
-    end
+    return unless @article.nil?
+
+    redirect_to articles_path
+    flash[:warning] = "Not Authorized"
   end
 
   private

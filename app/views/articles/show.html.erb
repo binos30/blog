@@ -8,7 +8,7 @@
       New Article
     <% end %>
   <% end %>
-  <% if article_author? %>
+  <% if article_author?(@article) %>
     <%= link_to edit_article_path(@article), class: 'btn btn-success btn-sm' do %>
       <i class="fas fa-edit"></i>
       Edit

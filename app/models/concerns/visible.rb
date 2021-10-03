@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Visible
   extend ActiveSupport::Concern
 
@@ -9,11 +11,11 @@ module Visible
 
   class_methods do
     def public_count
-      where(status: 'public').count
+      where(status: "public").count
     end
   end
 
   def archived?
-    status == 'archived'
+    status == "archived"
   end
 end
